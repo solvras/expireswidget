@@ -1,0 +1,11 @@
+/**
+ * Expires Widget plugin for Craft CMS
+ *
+ * ExpiresWidgetWidget Widget JS
+ *
+ * @author    Johannes Arnstad
+ * @copyright Copyright (c) 2020 Johannes Arnstad
+ * @link      https://solvr.no
+ * @package   ExpiresWidget
+ * @since     0.1.0
+ */
