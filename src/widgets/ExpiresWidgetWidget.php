@@ -11,7 +11,7 @@
 namespace solvras\expireswidget\widgets;
 
 use solvras\expireswidget\ExpiresWidget;
-use solvras\expireswidget\assetbundles\expireswidgetwidgetwidget\ExpiresWidgetWidgetWidgetAsset;
+use solvras\expireswidget\assetbundles\expireswidget\ExpiresWidgetAsset;
 
 use Craft;
 use craft\base\Widget;
@@ -32,7 +32,9 @@ class ExpiresWidgetWidget extends Widget
     /**
      * @var string
      */
-    public $message = 'Hello, world.';
+
+    public $numberOfArticles = 10;
+    public $daysBeforeExpire = 7;
 
     // Static Methods
     // =========================================================================
@@ -50,7 +52,7 @@ class ExpiresWidgetWidget extends Widget
      */
     public static function iconPath()
     {
-        return Craft::getAlias("@solvras/expireswidget/assetbundles/expireswidgetwidgetwidget/dist/img/ExpiresWidgetWidget-icon.svg");
+        return Craft::getAlias("@solvras/expireswidget/assetbundles/expireswidget/dist/img/ExpiresWidgetWidget-icon.svg");
     }
 
     /**
@@ -73,8 +75,8 @@ class ExpiresWidgetWidget extends Widget
         $rules = array_merge(
             $rules,
             [
-                ['message', 'string'],
-                ['message', 'default', 'value' => 'Hello, world.'],
+                ['numberOfArticles', 'integer'],
+                ['numberOfArticles', 'default', 'value' => 10]
             ]
         );
         return $rules;
@@ -98,13 +100,30 @@ class ExpiresWidgetWidget extends Widget
      */
     public function getBodyHtml()
     {
-        Craft::$app->getView()->registerAssetBundle(ExpiresWidgetWidgetWidgetAsset::class);
+        Craft::$app->getView()->registerAssetBundle(ExpiresWidgetAsset::class);
 
         return Craft::$app->getView()->renderTemplate(
             'expires-widget/_components/widgets/ExpiresWidgetWidget_body',
             [
-                'message' => $this->message
+                'numberOfArticles' => $this->numberOfArticles,
+                'daysBeforeExpire' => $this->daysBeforeExpire,
+                'entries' => $this->entriesToExpire($this->daysBeforeExpire, $this->numberOfArticles)
             ]
         );
+    }
+
+    public function entriesToExpire($expiresInDays, $limit)
+    {
+
+        $expiryDate = (new \DateTime('NOW'))->modify('+ ' . $expiresInDays . ' days')->format(\DateTime::ATOM);
+
+        $expiredEntriesQuery = \craft\elements\Entry::find()
+            ->expiryDate("< {$expiryDate}")
+            ->limit($limit)
+            ->orderBy('expiryDate ASC');
+
+        $result = $expiredEntriesQuery->all();
+
+        return $result;
     }
 }

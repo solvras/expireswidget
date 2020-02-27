@@ -18,9 +18,17 @@
 {% do view.registerAssetBundle("solvras\\expireswidget\\assetbundles\\expireswidget\\ExpiresWidgetAsset") %}
 
 {{ forms.textField({
-    label: 'Message',
-    instructions: 'Enter a message here.',
-    id: 'message',
-    name: 'message',
-    value: widget['message']})
+    label: 'Number of articles to show',
+    instructions: 'Enter number here',
+    id: 'numberOfArticles',
+    name: 'numberOfArticles',
+    value: widget['numberOfArticles']})
+}}
+
+{{ forms.textField({
+    label: 'Number days before expire',
+    instructions: 'Enter number here',
+    id: 'daysBeforeExpire',
+    name: 'daysBeforeExpire',
+    value: widget['daysBeforeExpire']})
 }}

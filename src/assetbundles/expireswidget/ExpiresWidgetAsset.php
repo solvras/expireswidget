@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2020 Johannes Arnstad
  */
 
-namespace solvras\expireswidget\assetbundles\expireswidgetwidgetwidget;
+namespace solvras\expireswidget\assetbundles\expireswidget;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -19,7 +19,7 @@ use craft\web\assets\cp\CpAsset;
  * @package   ExpiresWidget
  * @since     0.1.0
  */
-class ExpiresWidgetWidgetWidgetAsset extends AssetBundle
+class ExpiresWidgetAsset extends AssetBundle
 {
     // Public Methods
     // =========================================================================
@@ -29,7 +29,7 @@ class ExpiresWidgetWidgetWidgetAsset extends AssetBundle
      */
     public function init()
     {
-        $this->sourcePath = "@solvras/expireswidget/assetbundles/expireswidgetwidgetwidget/dist";
+        $this->sourcePath = "@solvras/expireswidget/assetbundles/expireswidget/dist";
 
         $this->depends = [
             CpAsset::class,

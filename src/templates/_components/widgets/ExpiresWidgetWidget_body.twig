@@ -13,8 +13,21 @@
  */
 #}
 
-{% set iconUrl = view.getAssetManager().getPublishedUrl('@solvras/expireswidget/assetbundles/expireswidgetwidgetwidget/dist', true) ~ '/img/ExpiresWidgetWidget-icon.svg' %}
-
-<img src="{{ iconUrl }}" height="64" width="64" />
-
-<p>{{ message }}</p>
+<div class="recententries-container">
+    {% if entries|length %}
+        <table class="fullwidth">
+            {% for entry in entries %}
+                <tr>
+                    <td>
+                        <a href="{{ entry.getCpEditUrl() }}">{{ entry.title }}</a>
+                        <span class="light">
+                            {{ entry.dateCreated|timestamp('short') }}
+                        </span>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>{{ "No entries exist yet."|t('app') }}</p>
+    {% endif %}
+</div>

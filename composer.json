@@ -1,5 +1,5 @@
 {
-    "name": "solvras/expires-widget",
+    "name": "solvras/expireswidget",
     "description": "Widget that shows entries about to expire",
     "type": "craft-plugin",
     "version": "0.1.0",
@@ -11,8 +11,8 @@
         "expires widget"
     ],
     "support": {
-        "docs": "https://github.com/solvras/expires-widget/blob/master/README.md",
-        "issues": "https://github.com/solvras/expires-widget/issues"
+        "docs": "https://github.com/solvras/expireswidget/blob/master/README.md",
+        "issues": "https://github.com/solvras/expireswidget/issues"
     },
     "license": "MIT",
     "authors": [
@@ -34,7 +34,7 @@
         "handle": "expires-widget",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/solvras/expires-widget/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/solvras/expireswidget/master/CHANGELOG.md",
         "class": "solvras\\expireswidget\\ExpiresWidget"
     }
 }
